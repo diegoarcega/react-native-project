@@ -1,22 +1,32 @@
 import React, { Component } from 'react';
+import { View, Text } from 'react-native';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import actions from '../../redux/actions';
 import Articles from '../../components/Articles';
-import request from 'axios';
 
-export default class ArticlesContainer extends Component{
+
+class ArticlesContainer extends Component{
   componentWillMount(){
-    request('https://braziljs.org/api/list/articles')
-    .then(data => {
-      console.log(data.data)
-      this.setState({
-        articles: data.data.articles,
-      })
-    });
-
-    this.setState({
-      articles: []
-    });
+    this.props.actions.getAll();
   }
   render(){
-    return <Articles articles={this.state.articles} />
+    return (
+      <View>
+        <Articles articles={this.props.articles} />
+      </View>
+    );
   }
 }
+
+function mapStateToProps (state) {
+	return state
+}
+
+function mapDispatchToProps (dispatch) {
+	return {
+		actions: bindActionCreators(actions, dispatch)
+	}
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(ArticlesContainer)

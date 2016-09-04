@@ -1,15 +1,27 @@
 import React, { Component } from 'react';
-import { View, StyleSheet } from 'react-native';
+import { ListView, StyleSheet } from 'react-native';
 import Article from '../Article';
 
 export default class Articles extends Component {
+  constructor(props){
+    super(props);
+    const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
+    this.state = {
+      dataSource: ds.cloneWithRows([]),
+    };
+  }
+  componentWillReceiveProps(nextProps){
+    const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
+    this.state = {
+      dataSource: ds.cloneWithRows(nextProps.articles)
+    };
+  }
   render(){
     return (
-      <View>
-        {this.props.articles.map((article, index) => (
-          <Article styles={styles.article} key={index} image={article.img} title={article.title} />
-        ))}
-      </View>
+      <ListView
+        dataSource={this.state.dataSource}
+        renderRow={article => <Article styles={styles.article} image={article.img} title={article.title} />} />
+
     );
   }
 }
