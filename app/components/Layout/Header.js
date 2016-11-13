@@ -5,7 +5,7 @@ class Header extends Component {
   render(){
     return (
       <View style={styles.container}>
-        <Text style={styles.title}>AppName</Text>
+        <Text style={styles.title}>JS Brazil</Text>
       </View>
     );
   }

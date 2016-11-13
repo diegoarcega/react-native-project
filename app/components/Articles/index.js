@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { ListView, StyleSheet } from 'react-native';
+import { View, Dimensions, ListView, StyleSheet } from 'react-native';
 import Article from '../Article';
 
 export default class Articles extends Component {
@@ -18,10 +18,11 @@ export default class Articles extends Component {
   }
   render(){
     return (
-      <ListView
-        dataSource={this.state.dataSource}
-        renderRow={article => <Article styles={styles.article} image={article.img} title={article.title} />} />
-
+      <View style={{height: Dimensions.get('window').height}}> 
+        <ListView
+          dataSource={this.state.dataSource}
+          renderRow={article => <Article styles={styles.article} image={article.img} title={article.title} />} />
+      </View>
     );
   }
 }
