@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, StyleSheet } from 'react-native';
+import { Dimensions, View, StyleSheet } from 'react-native';
 
 class Content extends Component{
   render(){
@@ -14,6 +14,8 @@ class Content extends Component{
 const styles = StyleSheet.create({
   content: {
     flex: 1,
+    height: Dimensions.get('window').height,
+    width: null,
     paddingLeft: 15,
     paddingRight: 15,
     paddingTop: 10,

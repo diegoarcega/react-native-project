@@ -18,11 +18,9 @@ export default class Articles extends Component {
   }
   render(){
     return (
-      <View style={{height: Dimensions.get('window').height}}> 
-        <ListView
-          dataSource={this.state.dataSource}
-          renderRow={article => <Article styles={styles.article} image={article.img} title={article.title} />} />
-      </View>
+      <ListView
+        dataSource={this.state.dataSource}
+        renderRow={article => <Article styles={styles.article} image={article.img} title={article.title} />} />
     );
   }
 }
